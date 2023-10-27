@@ -2,8 +2,8 @@
 layout: post
 title: Boot-up에 대한 회고
 subtitle: 백엔드 개발자가 되는 첫발은 아이디어에서부터
-categories: kernel360 
-tags: [back-end, 아이디어, 부트캠프]
+categories: markdown
+tags: [백엔드, 부트캠프]
 ---
 
 
