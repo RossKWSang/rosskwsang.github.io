@@ -7,6 +7,7 @@ tags: [백엔드, 부트캠프]
 ---
 
 
+
 Boot-up에 대한 회고
 
 ### *<center>"kernel360 boot-up을 마치고"</center>*
@@ -27,9 +28,14 @@ boot-up기간에는 아이디어 기획이 주가 되었으므로 툭별한 기�
 
 * github
 
+
 * notion
+
+
 * figma
-* 
+
+
+* erdcloud
 
 프로젝트에서 사용한 기술 스택 (언어, 프레임워크, 라이브러리, 데이터베이스 등)
 
