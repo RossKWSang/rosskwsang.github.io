@@ -1,11 +1,13 @@
 ---
 layout: post
-title: "kernel360" Boot-up에 대한 회고
+title: Boot-up에 대한 회고
 subtitle: 백엔드 개발자가 되는 첫발은 아이디어에서부터
 categories: kernel360 
 tags: [back-end, 아이디어, 부트캠프]
 ---
 
+
+Boot-up에 대한 회고
 
 ### *<center>"kernel360 boot-up을 마치고"</center>*
 
