@@ -3,7 +3,7 @@ layout: post
 title: boot-up에 대한 회고
 subtitle: 백엔드 개발자가 되는 첫발은 아이디어에서부터
 categories: kernel360
-tags: [백엔드, 부트캠프]
+tags: [백엔드, 부트캠프, kernel360, 패스트캠퍼스]
 ---
 
 
@@ -78,9 +78,11 @@ kernel360은 협업을 강조하는 부트캠프이다. 협업이 그냥 사이�
 
 음식점 위치 정보 제공 서비스의 API 명세를 마크다운 문서에 json형식으로 작성하는데 기여했다.
 
-#### 회원 가입
-##### 엔드포인트 : /api/sign-up
-##### Request
+> **회원 가입**
+
+> **엔드포인트** : /api/sign-up
+
+> Request
 ```json
 {
 "id": "flavor-match",
@@ -92,7 +94,7 @@ kernel360은 협업을 강조하는 부트캠프이다. 협업이 그냥 사이�
 "language": "kr"
 }
 ```
-##### Response
+> Response
 ```json
 {
   "status": "success",
@@ -103,9 +105,11 @@ kernel360은 협업을 강조하는 부트캠프이다. 협업이 그냥 사이�
 ```
 ---
 
-#### 회원 로그인
-##### 엔드포인트  /api/login
-##### Request
+> **회원 로그인**
+
+> **엔드포인트** : /api/login
+
+> Request
 Method: POST
 ```json
 {
@@ -113,9 +117,11 @@ Method: POST
     "password": "12345678",
 }
 ```
-##### Response
-201 Created
-Body:
+> Response
+
+> 201 Created
+
+> Body:
 ```json
 {
     "status": "success",
@@ -126,19 +132,23 @@ Body:
         "name": "이름",
         "email": "kkk@gmail.com",
         "age": 30,
-        "gender": "Other",
+        "gender": "Other",
         "nation_code": "US"
 	}
 }
 ```
 ---
-#### 내 리뷰 리스트 조회
-##### 엔드포인트  /api/myreviews/{user-id}
-##### Request
-Method : GET
-Parameter : user_id
+> 내 리뷰 리스트 조회
 
-##### Response
+> 엔드포인트  /api/myreviews/{user-id}
+
+> Request
+
+> Method : GET
+
+> Parameter : user_id
+
+> Response
 ```json
 {
   "status": "success",
