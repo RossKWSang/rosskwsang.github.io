@@ -18,22 +18,22 @@ tags: [백엔드, DevOps]
 ---
 
 
-1. Docker 이미지를 Pull
+**1. Docker 이미지를 Pull**
 
 ```cmd
 docker pull mysql:8.2.0
 ```
-  
-  
-  
-2. Docker 이미지 실행
+
+
+
+**2. Docker 이미지 실행**
 ```cmd
-docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=<password> -d -p 3306:3306 mysql:latest
+docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=<password> -d -p 3306:3306 mysql:8.2.0
 ```
-  
-  
-  
-3. Docker 컨테이너 배쉬 실행
+
+
+
+**3. Docker 컨테이너 배쉬 실행**
 ```cmd
 docker exec -it mysql-container bash
 ```
@@ -41,7 +41,7 @@ docker exec -it mysql-container bash
   
   
   
-4. MySQL실행
+**4. 컨테이너 내에서 MySQL실행**
 ```cmd
 bash-4.4# mysql -u root -p
 ```
