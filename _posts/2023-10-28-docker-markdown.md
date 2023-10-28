@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Docker로 MySQL 실행하기
+title: Ubuntu22.04에서 Docker로 MySQL 실행하기
 subtitle: 
 categories: DevOps
 tags: [백엔드, DevOps]
