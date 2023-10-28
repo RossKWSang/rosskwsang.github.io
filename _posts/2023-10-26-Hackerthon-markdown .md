@@ -47,7 +47,8 @@ tags: [백엔드, 부트캠프, kernel360, 패스트캠퍼스]
 
 아래는 해커톤 기간동안 작성한 코드의 일부분
 
-> CategoryController.java
+> <center>CategoryController.java</center>
+
 ---
 
 ```java
@@ -98,7 +99,7 @@ public class CategoryController {
 }
 ```
 
-> CategoryDto.java
+> <center>CategoryDto.java</center>
 ---
 
 ```java
@@ -129,7 +130,8 @@ public class CategoryDto {
 }
 ```
 
-> CategoryService.java
+> <center>CategoryService.java</center>
+
 ---
  
 ```java
@@ -188,7 +190,8 @@ public class CategoryService {
 }
 ```
 
-> CategoryList.html
+> <center>CategoryList.html</center>
+
 ---
 
 ```html
@@ -235,12 +238,13 @@ public class CategoryService {
 ```
 
 ---
+
 #### *<center>"기여도: 몇 가지 성취는 있었지만 배부른 첫술은 아니었다."</center>*
 
 카테고리를 추가하고 삭제하는 기능이 작동하는 것은 확인했으나, 촉박한 일정 안에 완벽한 CRUD를 구현할 수는 없었다. 상당한 아쉬움으로 남았으며 이를 E2E 프로젝트를 진행하며 해소하길 원한다.
 
 카테고리는 사용자로부터 입력을 받아 카테고리 엔티티로 저장되며 삭제버튼을 누를 경우 삭제된다. 사용자의 메인페이지에서 카테고리란을 열람할 경우 테이블 형식으로 나열되도록 코딩했다. 또한 몇가지 엔드포인트를 연결할 수 있도록 화면에 링크를 구현하였다. (아래 그림)
 
-<img src="https://user-images.githubusercontent.com/147565215/276836064-8df8866c-cd8d-44ec-befb-514652509ea5.png" width="800px" height="350px" title="main image"/>
+<img src="https://user-images.githubusercontent.com/147565215/276836064-8df8866c-cd8d-44ec-befb-514652509ea5.png" width="700px" height="300px" title="main image"/>
 
 
