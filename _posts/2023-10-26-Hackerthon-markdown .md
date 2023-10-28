@@ -48,6 +48,8 @@ tags: [백엔드, 부트캠프, kernel360, 패스트캠퍼스]
 아래는 해커톤 기간동안 작성한 코드의 일부분
 
 > CategoryController.java
+---
+
 ```java
 package com.example.ministory.controller;
 
@@ -97,6 +99,8 @@ public class CategoryController {
 ```
 
 > CategoryDto.java
+---
+
 ```java
 package com.example.ministory.dto;
 
@@ -126,6 +130,8 @@ public class CategoryDto {
 ```
 
 > CategoryService.java
+---
+ 
 ```java
 package com.example.ministory.service;
 
@@ -183,6 +189,8 @@ public class CategoryService {
 ```
 
 > CategoryList.html
+---
+
 ```html
 <!DOCTYPE HTML>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
