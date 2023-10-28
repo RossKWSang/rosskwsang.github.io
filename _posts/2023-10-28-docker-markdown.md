@@ -18,7 +18,7 @@ tags: [백엔드, DevOps]
 ---
 
 
-1. Docker 이미지를 Pull한다.
+1. Docker 이미지를 Pull
 
 ```cmd
 docker pull mysql:8.2.0
@@ -47,7 +47,7 @@ bash-4.4# mysql -u root -p
 ```
 root password를 입력하고 들어가면 MySQL 콘솔에서 작업할 수 있다.
 
-``` mysql
+```mysql
 mysql> show databases;
 +--------------------+
 | Database           |
