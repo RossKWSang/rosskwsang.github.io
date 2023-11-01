@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 테스트 코드 작성기 01
+title: Junit5와 AssertJ를 활용한 테스트 코드 작성기 - 01
 subtitle: 
 categories: Java
 tags: [Java, 테스트]
