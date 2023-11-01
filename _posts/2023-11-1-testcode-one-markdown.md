@@ -6,7 +6,7 @@ categories: Java
 tags: [Java, 테스트]
 ---
 
-#### Junit5와 AssertJ를 활용한 간단한 기능구현과 테스트 코드 작성기
+#### JUnit5와 AssertJ를 활용한 간단한 기능구현과 테스트 코드 작성기
 
 
 
