@@ -27,9 +27,6 @@ dependencies {
 }
 ```
 
-build.gradle을
-
-
 #### **2. 간단한 기능과 테스트 코드 작성**
 
 ![트리구조](/assets/images/tree_dir.png)
@@ -54,8 +51,8 @@ test {
 * 테스트 클래스 : StringSplitterTest.java
 * 요구사항 명세 
   * 문자열을 일정한 delimeter에 따라 split하여 리스트로 반환하는 함수 작성
-  * 테스트 항목 01 : "1,2"를 ` , ` 로 split했을 때 1과 2로 잘 분리되는지 확인
-  * 테스트 항목 02 : "1"을 ` , `로 split했을 때 1만을 포함하는 배열이 반환되는지 확인
+  * 테스트 항목 01 : "1,2"를 ``` , ``` 로 split했을 때 1과 2로 잘 분리되는지 확인
+  * 테스트 항목 02 : "1"을 ``` , ```로 split했을 때 1만을 포함하는 배열이 반환되는지 확인
 
 
 ---
@@ -122,7 +119,7 @@ public class StringSplitterTest {
 * 기능 클래스 : ParenthesisRemover.java
 * 테스트 클래스 : ParenthesisRemoverTest.java
 * 요구사항 명세 
-  * "(1,2)" 값이 주어졌을 때 String의 substring() 메소드를 활용해 ` () ` 을 제거하고 "1,2"를 반환
+  * "(1,2)" 값이 주어졌을 때 String의 substring() 메소드를 활용해 ``` () ``` 을 제거하고 "1,2"를 반환
 
 
 ---
