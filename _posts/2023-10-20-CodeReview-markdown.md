@@ -2,7 +2,7 @@
 layout: post
 title: 소프트스킬 - 코드리뷰
 subtitle: 
-categories: softskill
+categories: Softskill
 tags: [코드리뷰]
 ---
 
