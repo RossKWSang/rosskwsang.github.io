@@ -18,7 +18,7 @@ tags: [Java, 테스트]
 ---
 
 
-**1. build.gradle에 의존성 추가**
+#### **1. build.gradle에 의존성 추가**
 
 ```gradle
 dependencies {
@@ -30,7 +30,7 @@ dependencies {
 build.gradle을
 
 
-**2. 간단한 기능과 테스트 코드 작성**
+#### **2. 간단한 기능과 테스트 코드 작성**
 
 ![트리구조](/assets/images/tree_dir.png)
 
@@ -48,7 +48,7 @@ test {
 ```
 
 
-**3. 문자열 분리 기능 구현 및 테스트**
+#### **3. 문자열 분리 기능 구현 및 테스트**
 
 * 기능 클래스 : StringSplitter.java
 * 테스트 클래스 : StringSplitterTest.java
@@ -117,7 +117,7 @@ public class StringSplitterTest {
 ```
 ---
 
-**4. 문자열 좌우말단 소괄호 제거 기능 구현 및 테스트**
+#### **4. 문자열 좌우말단 소괄호 제거 기능 구현 및 테스트**
 
 * 기능 클래스 : ParenthesisRemover.java
 * 테스트 클래스 : ParenthesisRemoverTest.java
@@ -170,7 +170,7 @@ public class ParenthesisRemoverTest {
 ```
 ---
 
-**5. 문자열에서 인덱싱된 문자(Char) 추출 기능 구현 및 테스트**
+#### **5. 문자열에서 인덱싱된 문자(Char) 추출 기능 구현 및 테스트**
 
 * 기능 클래스 : ParenthesisRemover.java
 * 테스트 클래스 : ParenthesisRemoverTest.java
@@ -232,7 +232,7 @@ public class CharacterExtractorTest {
 }
 ```
 
-**6. 테스트 결과 검토**
+#### **6. 테스트 결과 검토**
 
 다음과 같은 메시지가 나오면 테스트가 적절히 수행된 것
 ```cmd
