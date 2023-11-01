@@ -20,6 +20,7 @@ tags: [Java, 테스트]
 
 #### **1. build.gradle에 의존성 추가**
 
+**<center>build.gradle</center>**
 ```gradle
 dependencies {
     testImplementation 'org.assertj:assertj-core:3.22.0'
@@ -35,6 +36,7 @@ dependencies {
 
 각각의 테스트 코드는 build.gradle에 인식되도록 test항목에 추가한다.
 
+**<center>build.gradle</center>**
 ```gradle
 test {
     useJUnitPlatform()
