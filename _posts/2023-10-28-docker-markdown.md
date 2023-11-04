@@ -27,10 +27,27 @@ docker pull mysql:8.2.0
 
 
 **2. Docker 이미지 실행**
+
+처음 docker pull된 image를 시작한다면 다음과 같은 명령어 입력 
 ```cmd
 docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=<password> -d -p 3306:3306 mysql:8.2.0
 ```
 
+재부팅 또는 다른 이유로 실행이 중지된 docker container를 다시 사용한다면 다음과 같은 명령어 입력
+```cmd
+docker start mysql-container
+```
+
+만약 3306 포트가 사용중이라면 다음과 같은 에러가 날 수 있음
+```cmd
+Error response from daemon: driver failed programming external connectivity on endpoint mysql-container (6ba46878ff00458d512e3dde5e779ffea6e290e722ef6eea30a9eb1b41771b4e): Error starting userland proxy: listen tcp4 0.0.0.0:3306: bind: address already in use
+Error: failed to start containers: mysql-container
+```
+
+이런 경우 실행되고 있는 MySQL을 아래의 명령어를 통해 중지하고 위 run/start명령어를 입력
+```cmd
+mysqladmin -u root -p shutdown
+```
 
 
 **3. Docker 컨테이너 배쉬 실행**
