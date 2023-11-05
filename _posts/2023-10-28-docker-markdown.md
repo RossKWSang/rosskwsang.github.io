@@ -18,7 +18,7 @@ tags: [백엔드, DevOps]
 ---
 
 
-**1. Docker 이미지를 Pull**
+**1. Docker 이미지 Pull**
 
 ```cmd
 docker pull mysql:8.2.0
