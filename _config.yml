@@ -218,3 +218,9 @@ plugins:
   - jekyll-sitemap
   - jekyll-paginate
   - jekyll-spaceship
+
+analytics:
+  provider: "google-gtag"
+  google:
+    tracking_id: "G-5B5RT70XZD"
+    anonymize_ip: false
