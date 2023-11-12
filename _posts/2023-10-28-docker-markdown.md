@@ -44,6 +44,7 @@ Error response from daemon: driver failed programming external connectivity on e
 Error: failed to start containers: mysql-container
 ```
 
+
 이런 경우 실행되고 있는 MySQL을 아래의 명령어를 통해 중지하고 위 run/start명령어를 입력
 ```cmd
 mysqladmin -u root -p shutdown

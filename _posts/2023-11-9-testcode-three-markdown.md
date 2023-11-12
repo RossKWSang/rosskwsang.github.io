@@ -1,44 +1,109 @@
 ---
 layout: post
-title: Junit5와 AssertJ를 활용한 테스트 코드 작성기 - 02
-subtitle: 
+title: Junit5와 AssertJ를 활용한 테스트 코드 작성기 - 03
+subtitle: 백준1919 문제를 TDD로 풀기
 categories: Java
 tags: [Java, 테스트]
 ---
 
-#### JUnit5와 AssertJ를 활용한 간단한 기능구현과 테스트 코드 작성기
+#### 백준1919 애너그램 만들기
 
+##### 문제 
 
-
-> ##### Version
-> * JUnit5 : 5.8.2
-> * AssertJ : 3.22.0
-> * Gradle : 6.8.1
+> - 두 영어 단어가 철자의 순서를 뒤바꾸어 같아질 수 있을 때, 그러한 두 단어를 서로 애너그램 관계에 있다고 한다. 예를 들면 occurs 라는 영어 단어와 succor 는 서로 애너그램 관계에 있는데, occurs의 각 문자들의 순서를 잘 바꾸면 succor이 되기 때문이다.
+> 
+> - 한 편, dared와 bread는 서로 애너그램 관계에 있지 않다. 하지만 dared에서 맨 앞의 d를 제거하고, bread에서 제일 앞의 b를 제거하면, ared와 read라는 서로 애너그램 관계에 있는 단어가 남게 된다.
+>
+> - 두 개의 영어 단어가 주어졌을 때, **두 단어가 서로 애너그램 관계에 있도록 만들기 위해서 제거해야 하는 최소 개수의 문자 수**를 구하는 프로그램을 작성하시오. 문자를 제거할 때에는 아무 위치에 있는 문자든지 제거할 수 있다.
 
 ---
 
+##### 입력
 
-#### **1. build.gradle에 테스트 코드 추가**
+> - 첫째 줄과 둘째 줄에 영어 단어가 소문자로 주어진다. 각각의 길이는 1,000자를 넘지 않으며, 적어도 한 글자로 이루어진 단어가 주어진다.
 
-**Junit5와 AssertJ를 활용한 테스트 코드 작성기 - 01**에서 작성한 테스트 코드 이외에도 ***SetTest.class*** 와 ***ParsingCalculatorTest.class***를 추가하고 빌드
+---
 
+##### 출력
+
+> - 첫째 줄에 답을 출력한다.
+
+
+##### 입출력 예시
+
+|입력 (문자열 2개)|출력 (정수형)|
+|---|---|
+|aabbcc<br>xxyybb|8|
+
+---
+
+#### **1. 기능 분석**
+
+    - 애너그램을 인위적으로 만드려고 하기보다 그것이 성립되기 위한 최소 조건을 구한다는 관점으로 접근한다.
+    - 두 개의 영단어에서 중복되지 않는 알파벳의 개수를 구하면 그만큼의 철자를 제거했을 때 애너그램이 성립된다.
+
+**기능1:** 두 개의 영단어를 읽는다. -> 두 문자열을 입력받는 것으로 테스트 코드는 작성하지 않는다.
+
+**기능2:** 한 영단어에 대하여 알파벳 개수를 담고있는 리스트(이하, 알파벳 리스트) 생성을 수행한다.
+
+- 함수명: MakeAlphabetCountVectorForSingleString
+
+|입력 (String)|출력 (List\<int>)|
+|---|---|
+|aabbcc|[2,2,2,...,0]|
+
+**기능3:** 두 알파벳 리스트를 비교하여 중복되지 않는 철자의 개수의 합을 구한다.
+
+- 함수명: AbsoluteSumForSubstractionOfTwoVectors
+
+|입력 (List\<int>, List\<int>)|출력 (int)|
+|---|---|
+|[2,0,2,2]<br>[2,1,2,1]|2|
+
+
+#### **2. 알파벳 리스트 생성 함수**
+
+
+각 기능은 하나의 함수로 코딩되기전 테스트 코드로 작성된다.
 의존성은 [이전에 작성한 포스트](https://rosskwsang.github.io/java/2023/11/01/testcode-one-markdown.html) 참고
 
-**<center>build.gradle</center>**
 
-```gradle
-test {
-    useJUnitPlatform()
-    include 'com/example/utils/StringSplitterTest.class'
-    include 'com/example/utils/ParenthesisRemoverTest.class'
-    include 'com/example/utils/CharacterExtractorTest.class'
-    include 'com/example/utils/SetTest.class'
-    include 'com/example/utils/ParsingCalculatorTest.class'
-}
+**<center>MakeAlphabetCountVectorForSingleStringTest</center>**
+
+```Java
+    @Test
+    void test1() {
+        // given
+        String input = "aabbcc";
+
+        // when
+        List<Integer> result = MakeAlphabetCountVectorForSingleString(input);
+
+        // then
+        assertThat(result).isEqualTo(Arrays.asList(2, 2, 2, 1));
+    }
 ```
 
+```Java
+    @Test
+    void test2() {
+        // given
+        String input = "aaaaa";
 
-#### **2. 셋(Set)을 구현한 이후 몇가지 JUnit 기능 활용 테스트**
+        // when
+        List<Integer> result = MakeAlphabetCountVectorForSingleString(input);
+
+        // then
+        assertThat(result).isEqualTo(Arrays.asList(5));
+    }
+
+```
+
+**<center>MakeAlphabetCountVectorForSingleString</center>**
+
+```Java
+
+```
 
 * 테스트 클래스 : SetTest.java
 * 요구사항 명세 
