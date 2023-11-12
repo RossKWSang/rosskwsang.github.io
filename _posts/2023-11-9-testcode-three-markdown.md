@@ -60,8 +60,9 @@ tags: [Java, 테스트]
 |---|---|
 |[2,0,2,2]<br>[2,1,2,1]|2|
 
+---
 
-#### **2. 알파벳 리스트 생성 함수**
+#### **2. 알파벳 리스트 생성 함수 테스트 코드 작성**
 
 
 각 기능은 하나의 함수로 코딩되기전 테스트 코드로 작성된다.
@@ -72,223 +73,104 @@ tags: [Java, 테스트]
 
 ```Java
     @Test
-    void test1() {
-        // given
-        String input = "aabbcc";
-
-        // when
-        List<Integer> result = MakeAlphabetCountVectorForSingleString(input);
-
-        // then
-        assertThat(result).isEqualTo(Arrays.asList(2, 2, 2, 1));
+    @DisplayName(value="인코딩 함수(문자열 -> 벡터) 동작 테스트")
+    void makeAlphabetCountVectorForSingleStringTest() {
+        Function<String, List<Integer>> stringEncoder = Anagram::makeAlphabetCountVectorForSingleString;
+        assertThat(stringEncoder.apply("aabbcc"))
+                .isEqualTo(
+                        Stream.concat( // 1
+                                Stream.of(Arrays.asList(2, 2, 2)).flatMap(List::stream), // 2
+                                IntStream.generate(() -> 0).limit(23).boxed() // 3
+                        )
+                                .collect(Collectors.toList()) // 4
+                );
     }
 ```
+
+해당 테스트는 aabbcc를 [2,2,2,0,0,...,0]으로 바꾸는 함수를 상정하고 작성하였다.
+1. 두 개의 스트림을 순서대로 병합한다.
+2. 앞단에 들어갈 2,2,2 Array를 스트림으로 변환하고 flat하여 동일한 차원에서 병합되도록 한다. FlatMap을 실행하지 않으면 결과는 [[2,2,2],0,0,...,0]가 된다.
+3. IntStream.generate는 정수를 무한히 생성하고, Limit은 생성되는 정수의 개수를 조절한다. boxed()를 실행하여 IntStream을 Stream<Integer>로 변환한다.
+4. 병합된 Stream을 List로 변환하여 수집(Collect)한다.
+
+---
+
+#### **3 . 알파벳 리스트 생성 함수 작성 및 테스트 결과**
+```Java
+    public static List<Integer> makeAlphabetCountVectorForSingleString(String input) {
+        List<Integer> result = IntStream.generate(() -> 0).limit(26).boxed().collect(Collectors.toList()); // 1
+        input.chars() // 2
+                .forEach(ch -> {
+                    if (Character.isAlphabetic(ch)) {
+                        result.set(ch - 'a', result.get(ch - 'a') + 1); // 3
+                    }
+                });
+        return result;
+    }
+```
+1. 테스트 코드와 동일한 방식으로 0으로 채워진 List<Integer>를 생성
+2. 인자로 받은 문자열을 IntStream으로 변환
+3. Stream의 값이 알파벳에 해당하면 List<Integer>의 인덱스를 알파벳과 일치('a'를 소거)시키고 1을 추가함
+
+* 테스트 결과는 **성공**
+
+---
+
+#### **4. 리스트 절대차이의 합을 구하는 함수 테스트 코드 작성**
 
 ```Java
     @Test
-    void test2() {
-        // given
-        String input = "aaaaa";
-
-        // when
-        List<Integer> result = MakeAlphabetCountVectorForSingleString(input);
-
-        // then
-        assertThat(result).isEqualTo(Arrays.asList(5));
+    @DisplayName(value="두 리스느 원소의 차이의 절대값의 합을 구하는 테스트 ")
+    void absoluteSumForSubtractionOfTwoVectors() {
+        BiFunction<List<Integer>, List<Integer>, Integer> distanceMeasurer = Anagram::absoluteSumForSubtractionOfTwoVectors;
+        assertThat(distanceMeasurer.apply(
+                Arrays.asList(2, 2, 2),
+                Arrays.asList(2, 3, 1)
+                )
+        )
+                .isEqualTo(2);
     }
-
 ```
+위 테스트는 List를 두 개 받아 벡터 차를 구하여 정확한 값을 출력하는 지 테스트한다. 가령 [2, 2, 2]와 [2, 3, 1]의 차이는 [0, 1, 1]이고 전체를 합했을 때 나올 아웃풋이 2와 일치하는 지 테스트한다.
 
-**<center>MakeAlphabetCountVectorForSingleString</center>**
+---
+
+#### **5. 리스트 절대차이의 합을 구하는 함수 작성 및 테스트 결과**
 
 ```Java
+    public static int absoluteSumForSubtractionOfTwoVectors(List<Integer> vec1, List<Integer> vec2) {
 
-```
-
-* 테스트 클래스 : SetTest.java
-* 요구사항 명세 
-  * 클래스내 numbers라는 셋을 선언하고 setUp 메서드에 셋에 몇가지 숫자를 추가함 해당 메서드는 @BeforeEach Annotation을 가지고 있기 때문에 각각의 개별 테스트 이전에 한번 씩 실행됨
-  * 테스트 항목 01 : Set의 size() 메소드를 활용해 Set의 크기를 확인하는 학습테스트 구현
-  * 테스트 항목 02 : Set의 contains() 메소드를 활용해 1,2,3의 값이 존재하는지 확인하는 학습테스트를 구현, JUnit의 ParameterizedTest를 활용하여 중복코드를 제거할 것
-  * 테스트 항목 03 : 존재하지 않는 경우에 대하여 테스트가 가능하도록 구현, 예를들어 1,2,3 값은 contains 메소드 실행결과 true, 4,5 값을 넣으면 false 가 반환되는 테스트를 하나의 Test Case로 구현
-
----
-
-**<center>셋업</center>**
-```java
-public class SetTest {
-    private Set<Integer> numbers;
-
-    @BeforeEach
-    void setUp() {
-        numbers = new HashSet<>();
-        numbers.add(1);
-        numbers.add(1);
-        numbers.add(2);
-        numbers.add(3);
-    }
-```
----
-
-**<center>테스트 항목 01</center>**
-```java
-    @Test
-    @DisplayName("위 정의된 Set의 크기가 3이 맞는지 확인 테스트")
-    void testSetSize() {
-        assertThat(numbers.size())
-                .isEqualTo(3);
+        return IntStream
+                .range(0, Math.min(vec1.size(), vec2.size()))
+                .mapToObj(i -> Math.abs(vec1.get(i) - vec2.get(i)))
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 ```
 
-**<center>테스트 항목 02</center>**
-```java
-    @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3})
-    void testSetContainsCertainValues(int input) {
-        assertTrue(numbers.contains(input));
+* 테스트 결과는 **성공**
+
+
+#### **6. 기능 통합과 문제 풀이 결과**
+
+```Java
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String word1 = br.readLine();
+        String word2 = br.readLine();
+        System.out.println(absoluteSumForSubtractionOfTwoVectors
+                (
+                        makeAlphabetCountVectorForSingleString(word1),
+                        makeAlphabetCountVectorForSingleString(word2)
+                )
+        );
     }
 ```
 
-**<center>테스트 항목 03</center>**
-```java
-    @ParameterizedTest
-    @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
-    void testSetContainsCertainValuesOrNot(String integerInput, String isContainedInput) {
-         int integer = Integer.parseInt(integerInput);
-         boolean isContained = Boolean.parseBoolean(isContainedInput);
-         assertEquals(numbers.contains(integer), isContained);
-    }
-```
----
+기능 통합은 main함수에서 다음과 같이 이루어졌으며 백준에 제출한 결과 통과 판정을 받음
 
-#### **3. 문자열 파싱 이후 덧셈을 수행하는 계산기 기능 구현 및 테스트**
 
-* 기능 클래스 : ParsingCalculator.java
-* 테스트 클래스 : ParsingCalculatorTest.java
-* 요구사항 명세 
-  * 쉼표(,) 또는 콜론(:)을 구분자로 가지는 문자열을 전달하는 경우 구분자를 기준으로 분리한 각 숫자의 합을 반환 (예: “” => 0, "1,2" => 3, "1,2,3" => 6, “1,2:3” => 6)
-  * 앞의 기본 구분자(쉼표, 콜론)외에 커스텀 구분자를 지정할 수 있음 
-  * 커스텀 구분자는 문자열 앞부분의 “//”와 “\n” 사이에 위치하는 문자를 커스텀 구분자로 사용
-  * 예를 들어 “//;\n1;2;3”과 같이 값을 입력할 경우 커스텀 구분자는 세미콜론(;)이며, 결과 값은 6이 반환됨
-  * 문자열 계산기에 숫자 이외의 값 또는 음수를 전달하는 경우 RuntimeException 예외를 throw
+#### **7. 회고**
+- 문제의 명세를 자세히 보았을 때 작성할 필요없는 조건문을 사용한 경우가 있음
+- Stream을 사용하고 있지만 함수형으로 작성이 되고 있는 것 같지는 않음 -> 이 부분에 대한 공부가 필요함 
 
----
-
-**<center>ParsingCalculator.java</center>**
-```java
-package com.example.utils;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-
-public class ParsingCalculator {
-    private ParsingCalculator() {
-        throw new IllegalStateException("유틸리티 클래스에 대한 잘못된 접근: 초기화");
-    }
-
-    public static String joinList(String[] list) {
-        return Arrays.stream(list)
-                .collect(Collectors.joining("|"));
-    }
-
-    public static String extractCustomSeparator(String str) {
-        Pattern pattern = Pattern.compile("//(.*)\n");
-        Matcher matcher = pattern.matcher(str);
-
-        if (matcher.find()) {
-            return "[^/\n" + joinList(matcher.group(1).split("")) + "]";
-        } else {
-            return "[^,|:]";
-        }
-    }
-
-    public static int parseAndSum(String str) {
-
-        String delimiter = extractCustomSeparator(str);
-
-        Pattern pattern = Pattern.compile(delimiter);
-        Matcher matcher = pattern.matcher(str);
-
-        List<String> tokens = new ArrayList<>();
-        while (matcher.find()) {
-            tokens.add(matcher.group());
-        }
-
-        int sum = 0;
-        for (String token : tokens) {
-            try {
-                int number = Integer.parseInt(token);
-                if (number < 0) {
-                    throw new RuntimeException("음수 값은 허용되지 않습니다.");
-                }
-                sum += number;
-            } catch (NumberFormatException e) {
-                throw new RuntimeException("숫자 이외의 값은 허용되지 않습니다.");
-            }
-        }
-        return sum;
-    }
-}
-```
----
-
-**<center>ParsingCalculatorTest.java</center>**
-```java
-package com.example.utils;
-
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import java.util.function.Function;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-class ParsingCalculatorTest {
-
-    int parseAndSum(String input) {
-        Function<String, Integer> calculator = ParsingCalculator::parseAndSum;
-        return calculator.apply(input);
-    }
-
-    @Test
-    @DisplayName("공백문자를 넣을 경우 0을 출력")
-    void emptyString() {
-        assertEquals(0, parseAndSum(""));
-    }
-
-    @Test
-    @DisplayName("단일 문자 테스트")
-    void singleNumber() {
-        assertEquals(1, parseAndSum("1"));
-    }
-
-    @Test
-    @DisplayName("복수 문자 테스트")
-    void multipleNumbers() {
-        assertEquals(6, parseAndSum("1,2,3"));
-    }
-
-    @Test
-    @DisplayName("복수 문자 테스트")
-    void multipleNumbersWithCustomDelimiter() {
-        assertEquals(6, parseAndSum("//.:\n1.2:3"));
-    }
-
-    @Test
-    @DisplayName("음수 포함시 런타임 에러")
-    void negativeNumber() {
-        assertThrows(RuntimeException.class, () -> parseAndSum("1,-2,3"));
-    }
-
-    @Test
-    @DisplayName("숫자가 아닌 문자를 포함시 런타임 에러")
-    void nonNumericString() {
-        assertThrows(RuntimeException.class, () -> parseAndSum("a,b,c"));
-    }
-}
-```
