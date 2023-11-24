@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Junit5와 AssertJ를 활용한 테스트 코드 작성기 - 03
+title:
 subtitle: 백준1919 문제를 TDD로 풀기
 categories: Java
 tags: [Java, 테스트]
@@ -8,10 +8,10 @@ tags: [Java, 테스트]
 
 #### 백준1919 애너그램 만들기
 
-##### 문제 
+##### 문제
 
 > - 두 영어 단어가 철자의 순서를 뒤바꾸어 같아질 수 있을 때, 그러한 두 단어를 서로 애너그램 관계에 있다고 한다. 예를 들면 occurs 라는 영어 단어와 succor 는 서로 애너그램 관계에 있는데, occurs의 각 문자들의 순서를 잘 바꾸면 succor이 되기 때문이다.
-> 
+>
 > - 한 편, dared와 bread는 서로 애너그램 관계에 있지 않다. 하지만 dared에서 맨 앞의 d를 제거하고, bread에서 제일 앞의 b를 제거하면, ared와 read라는 서로 애너그램 관계에 있는 단어가 남게 된다.
 >
 > - 두 개의 영어 단어가 주어졌을 때, **두 단어가 서로 애너그램 관계에 있도록 만들기 위해서 제거해야 하는 최소 개수의 문자 수**를 구하는 프로그램을 작성하시오. 문자를 제거할 때에는 아무 위치에 있는 문자든지 제거할 수 있다.
@@ -28,12 +28,11 @@ tags: [Java, 테스트]
 
 > - 첫째 줄에 답을 출력한다.
 
-
 ##### 입출력 예시
 
-|입력 (문자열 2개)|출력 (정수형)|
-|---|---|
-|aabbcc<br>xxyybb|8|
+| 입력 (문자열 2개) | 출력 (정수형) |
+| ----------------- | ------------- |
+| aabbcc<br>xxyybb  | 8             |
 
 ---
 
@@ -48,25 +47,22 @@ tags: [Java, 테스트]
 
 - 함수명: MakeAlphabetCountVectorForSingleString
 
-|입력 (String)|출력 (List\<int>)|
-|---|---|
-|aabbcc|[2,2,2,...,0]|
+| 입력 (String) | 출력 (List\<int>) |
+| ------------- | ----------------- |
+| aabbcc        | [2,2,2,...,0]     |
 
 **기능3:** 두 알파벳 리스트를 비교하여 중복되지 않는 철자의 개수의 합을 구한다.
 
 - 함수명: AbsoluteSumForSubstractionOfTwoVectors
 
-|입력 (List\<int>, List\<int>)|출력 (int)|
-|---|---|
-|[2,0,2,2]<br>[2,1,2,1]|2|
-
+| 입력 (List\<int>, List\<int>) | 출력 (int) |
+| ----------------------------- | ---------- |
+| [2,0,2,2]<br>[2,1,2,1]        | 2          |
 
 #### **2. 알파벳 리스트 생성 함수**
 
-
 각 기능은 하나의 함수로 코딩되기전 테스트 코드로 작성된다.
 의존성은 [이전에 작성한 포스트](https://rosskwsang.github.io/java/2023/11/01/testcode-one-markdown.html) 참고
-
 
 **<center>MakeAlphabetCountVectorForSingleStringTest</center>**
 
@@ -105,16 +101,17 @@ tags: [Java, 테스트]
 
 ```
 
-* 테스트 클래스 : SetTest.java
-* 요구사항 명세 
-  * 클래스내 numbers라는 셋을 선언하고 setUp 메서드에 셋에 몇가지 숫자를 추가함 해당 메서드는 @BeforeEach Annotation을 가지고 있기 때문에 각각의 개별 테스트 이전에 한번 씩 실행됨
-  * 테스트 항목 01 : Set의 size() 메소드를 활용해 Set의 크기를 확인하는 학습테스트 구현
-  * 테스트 항목 02 : Set의 contains() 메소드를 활용해 1,2,3의 값이 존재하는지 확인하는 학습테스트를 구현, JUnit의 ParameterizedTest를 활용하여 중복코드를 제거할 것
-  * 테스트 항목 03 : 존재하지 않는 경우에 대하여 테스트가 가능하도록 구현, 예를들어 1,2,3 값은 contains 메소드 실행결과 true, 4,5 값을 넣으면 false 가 반환되는 테스트를 하나의 Test Case로 구현
+- 테스트 클래스 : SetTest.java
+- 요구사항 명세
+  - 클래스내 numbers라는 셋을 선언하고 setUp 메서드에 셋에 몇가지 숫자를 추가함 해당 메서드는 @BeforeEach Annotation을 가지고 있기 때문에 각각의 개별 테스트 이전에 한번 씩 실행됨
+  - 테스트 항목 01 : Set의 size() 메소드를 활용해 Set의 크기를 확인하는 학습테스트 구현
+  - 테스트 항목 02 : Set의 contains() 메소드를 활용해 1,2,3의 값이 존재하는지 확인하는 학습테스트를 구현, JUnit의 ParameterizedTest를 활용하여 중복코드를 제거할 것
+  - 테스트 항목 03 : 존재하지 않는 경우에 대하여 테스트가 가능하도록 구현, 예를들어 1,2,3 값은 contains 메소드 실행결과 true, 4,5 값을 넣으면 false 가 반환되는 테스트를 하나의 Test Case로 구현
 
 ---
 
 **<center>셋업</center>**
+
 ```java
 public class SetTest {
     private Set<Integer> numbers;
@@ -128,9 +125,11 @@ public class SetTest {
         numbers.add(3);
     }
 ```
+
 ---
 
 **<center>테스트 항목 01</center>**
+
 ```java
     @Test
     @DisplayName("위 정의된 Set의 크기가 3이 맞는지 확인 테스트")
@@ -141,6 +140,7 @@ public class SetTest {
 ```
 
 **<center>테스트 항목 02</center>**
+
 ```java
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
@@ -150,6 +150,7 @@ public class SetTest {
 ```
 
 **<center>테스트 항목 03</center>**
+
 ```java
     @ParameterizedTest
     @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
@@ -159,22 +160,24 @@ public class SetTest {
          assertEquals(numbers.contains(integer), isContained);
     }
 ```
+
 ---
 
 #### **3. 문자열 파싱 이후 덧셈을 수행하는 계산기 기능 구현 및 테스트**
 
-* 기능 클래스 : ParsingCalculator.java
-* 테스트 클래스 : ParsingCalculatorTest.java
-* 요구사항 명세 
-  * 쉼표(,) 또는 콜론(:)을 구분자로 가지는 문자열을 전달하는 경우 구분자를 기준으로 분리한 각 숫자의 합을 반환 (예: “” => 0, "1,2" => 3, "1,2,3" => 6, “1,2:3” => 6)
-  * 앞의 기본 구분자(쉼표, 콜론)외에 커스텀 구분자를 지정할 수 있음 
-  * 커스텀 구분자는 문자열 앞부분의 “//”와 “\n” 사이에 위치하는 문자를 커스텀 구분자로 사용
-  * 예를 들어 “//;\n1;2;3”과 같이 값을 입력할 경우 커스텀 구분자는 세미콜론(;)이며, 결과 값은 6이 반환됨
-  * 문자열 계산기에 숫자 이외의 값 또는 음수를 전달하는 경우 RuntimeException 예외를 throw
+- 기능 클래스 : ParsingCalculator.java
+- 테스트 클래스 : ParsingCalculatorTest.java
+- 요구사항 명세
+  - 쉼표(,) 또는 콜론(:)을 구분자로 가지는 문자열을 전달하는 경우 구분자를 기준으로 분리한 각 숫자의 합을 반환 (예: “” => 0, "1,2" => 3, "1,2,3" => 6, “1,2:3” => 6)
+  - 앞의 기본 구분자(쉼표, 콜론)외에 커스텀 구분자를 지정할 수 있음
+  - 커스텀 구분자는 문자열 앞부분의 “//”와 “\n” 사이에 위치하는 문자를 커스텀 구분자로 사용
+  - 예를 들어 “//;\n1;2;3”과 같이 값을 입력할 경우 커스텀 구분자는 세미콜론(;)이며, 결과 값은 6이 반환됨
+  - 문자열 계산기에 숫자 이외의 값 또는 음수를 전달하는 경우 RuntimeException 예외를 throw
 
 ---
 
 **<center>ParsingCalculator.java</center>**
+
 ```java
 package com.example.utils;
 
@@ -234,9 +237,11 @@ public class ParsingCalculator {
     }
 }
 ```
+
 ---
 
 **<center>ParsingCalculatorTest.java</center>**
+
 ```java
 package com.example.utils;
 
