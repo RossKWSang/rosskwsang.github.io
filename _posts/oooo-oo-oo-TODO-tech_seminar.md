@@ -111,3 +111,9 @@ Kernel360의 선택 과정으로 오픈세미나를 신청하여 준비 중이�
 - 은총알은 없다로 시작
 
 - 제목을 흥미를 끄는 방식으로
+
+## Spring Data JPA에 대하여 비판적인 에세이 분석
+
+[에세이 링크](https://itnext.io/advantages-of-not-using-spring-data-and-hibernate-with-relational-data-8a509faf0c48)
+
+Spring Data is an additional layer above common technologies for storing data. Spring Data JPA, the most commonly used part of Spring Data, is supposed to simplify JPA-based code by eliminating recurrent pieces of code. Essentially Spring Data JPA is a kind of JPA with hidden EntityManager.
