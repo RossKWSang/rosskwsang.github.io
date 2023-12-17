@@ -2,7 +2,7 @@
 layout: post
 title: 자바 ORM 표준 JPA 프로그래밍 정리하며 읽기 - 01
 subtitle: 연관관계 부분 (4장 ~ 7장)
-categories: Spring Boot
+categories: JPA
 tags: [Spring Boot, JPA]
 ---
 
