@@ -114,10 +114,24 @@ Kernel360의 선택 과정으로 오픈세미나를 신청하여 준비 중이�
 
 ## Spring Data JPA에 대하여 비판적인 에세이 분석
 
-[에세이 링크](https://itnext.io/advantages-of-not-using-spring-data-and-hibernate-with-relational-data-8a509faf0c48)
+영속성 부여에 대한 여러 기술을 사용해보고 [에세이 링크](https://itnext.io/advantages-of-not-using-spring-data-and-hibernate-with-relational-data-8a509faf0c48)
 
-- Spring Data JPA는 Spring Data 모듈 중에서도 가장 많이 사용되는 추가적인 레이어로서 EntityManager를 사용하지 않는 JPA라고 볼 수 있다.
+- Spring Data JPA는 Spring Data 모듈 중에서도 가장 많이 사용되는 추가적인 레이어로서 EntityManager를 사용하지 않는 JPA라고 볼 수 있음.
+
+- Spring Data JPA를 사용한다면 주로 Hibernate를 구현체로 사용하게 되는데 이 에세이에서는 EclipseLink도 사용해 보았음.
+
+- MySQL과 연동된 데이터를 불러오는데 다음과 같은 내용의 비교를 진행함
+
+  - 실행되는 SQL 쿼리의 수
+
+  - 데이터를 불러오는데 필요한 시간
+
+  - 데이터가 정확하게 엔티티에 매핑이 되어있는지 여부
+
+  - 데이터가 정확하게 정렬이 되는지 여부 (findAll(sort))
 
 -
 
-Spring Data is an additional layer above common technologies for storing data. Spring Data JPA, the most commonly used part of Spring Data, is supposed to simplify JPA-based code by eliminating recurrent pieces of code. Essentially Spring Data JPA is a kind of JPA with hidden EntityManager.
+- 결론 :
+
+- 의견 : ManyToMany매핑이 제대로 되어있지 않다. 주인관계를 명확하게 설정하지 않았다.
