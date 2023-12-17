@@ -116,4 +116,8 @@ Kernel360의 선택 과정으로 오픈세미나를 신청하여 준비 중이�
 
 [에세이 링크](https://itnext.io/advantages-of-not-using-spring-data-and-hibernate-with-relational-data-8a509faf0c48)
 
+- Spring Data JPA는 Spring Data 모듈 중에서도 가장 많이 사용되는 추가적인 레이어로서 EntityManager를 사용하지 않는 JPA라고 볼 수 있다.
+
+-
+
 Spring Data is an additional layer above common technologies for storing data. Spring Data JPA, the most commonly used part of Spring Data, is supposed to simplify JPA-based code by eliminating recurrent pieces of code. Essentially Spring Data JPA is a kind of JPA with hidden EntityManager.
