@@ -124,14 +124,53 @@ Kernel360의 선택 과정으로 오픈세미나를 신청하여 준비 중이�
 
   - 실행되는 SQL 쿼리의 수
 
+    - show_sql(hibernate), logging.level(eclipselink)에서 select되는 개수, 다음과 같은 Line으로 시작해야함
+      - Hibernate: select
+      - [EL Fine]: sql: SELECT
+
   - 데이터를 불러오는데 필요한 시간
+
+    - 15번 시간을 측정하고 마지막 10번의 시간을 기록함
 
   - 데이터가 정확하게 엔티티에 매핑이 되어있는지 여부
 
   - 데이터가 정확하게 정렬이 되는지 여부 (findAll(sort))
 
--
+- 비교가 진행된 여러가지 데이터 호줄 방법들
+  - JDBC & SQL
 
-- 결론 :
+```sql
+select a.actor_id, a.first_name,a.last_name, f.film_id, f.title,c.category_id, c.name from actor a
+left join film_actor using(actor_id)
+left join film f using(film_id)
+left join film_category using(film_id)
+left join category c using(category_id)
+order by a.last_name,a.first_name, f.title, c.name
+```
 
-- 의견 : ManyToMany매핑이 제대로 되어있지 않다. 주인관계를 명확하게 설정하지 않았다.
+- JpaRepository
+
+  - findAll()
+  - findAll(Sort)
+  - QueryDSL
+  - JPQL query
+
+- 결론
+
+  - JDBC와 JPA findAll()메서드는 속도면에서 약 4배의 차이를 보임
+  - 그나마 QueryDSL을 사용하면 속도를 JDBC와 비슷한 수준으로 맞출 수 있음
+  - Hibernate에서 findAll(sort)메서드는 부정확한 결과를 내놓을 때가 있음
+
+- 의견
+
+  - ManyToMany매핑이 제대로 되어있지 않다.
+  - 엔티티 정의에서 주인관계를 명확하게 설정하지 않았다.
+  - 다대다 관계에서 테이블 관계와 다르게 연결 엔티티를 사용하지 않았다.
+  - 속도적인 문제는 N + 1문제로 QueryDSL 등을 사용한 쿼리 조인으로 해결될 수 있는 것으로 JPA 자체의 기술적인 한계라고 보기는 어렵다.
+  - findAll에서 Sort메서드가 부정확한 결과를 도출하는 부분은 검토가 필요할 것
+
+## 오픈세미나 2차 피드백
+
+- 일시 : 2023-12-18
+
+- 수정된 장표를 가지고 2차 피드백을
