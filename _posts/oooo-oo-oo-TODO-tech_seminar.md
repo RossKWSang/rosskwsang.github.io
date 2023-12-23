@@ -114,7 +114,7 @@ Kernel360의 선택 과정으로 오픈세미나를 신청하여 준비 중이�
 
 ## Spring Data JPA에 대하여 비판적인 에세이 분석
 
-영속성 부여에 대한 여러 기술을 사용해보고 [에세이 링크](https://itnext.io/advantages-of-not-using-spring-data-and-hibernate-with-relational-data-8a509faf0c48)
+영속성 부여에 대한 메서드를 사용하고 각각을 데이터를 이용하여 분석한 에세이는 다음과 같음. [에세이 링크](https://itnext.io/advantages-of-not-using-spring-data-and-hibernate-with-relational-data-8a509faf0c48)
 
 - Spring Data JPA는 Spring Data 모듈 중에서도 가장 많이 사용되는 추가적인 레이어로서 EntityManager를 사용하지 않는 JPA라고 볼 수 있음.
 
