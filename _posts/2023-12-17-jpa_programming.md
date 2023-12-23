@@ -16,6 +16,8 @@ tags: [Spring Boot, JPA]
 - 연관관계 매핑 : @ManyToOne, @JoinColumn
 
 ---
+#### 엔티티 정의 어노테이션
+
 
 **@Entity**
 
@@ -28,21 +30,15 @@ tags: [Spring Boot, JPA]
     - 상수 값이 되거나 한번만 쓸 수 있는 필드가 됨
     - 이러한 final이 붙은 멤버 변수들은 생성자 메서드가 끝나기 전에 초기화를 마쳐야함
 
----
-
 **@Table**
 
 - 엔티티와 매핑할 테이블을 지정
-
----
 
 **@Id 기본키 매핑 전략**
 
 세가지 데이터베이스 기본 키 생성 전략
 
 1. 직접할당: 기본 키를 어플리케이션에서 직접 할당
-2. 자동생성: 대리 키 사용 방식
-  - IDENTITY: 기본
 
 ```java
 @Entity
@@ -53,6 +49,44 @@ public class Member {
   ...
 }
 ```
+
+2. 자동생성: 대리 키 사용 방식
+  - IDENTITY 전략
+    - 기본 키 생성을 데이터베이스에 위임하는 전략(MySQL, PostgreSQL, SQL Server, DB2)
+
+```java
+@Entity
+public class Member {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  ...
+}
+```
+  - SEQUENCE 전략
+    - SEQUENCE는 유일한 값을 순서대로 생성하는 특별한 데이터베이스 오브젝트 
+    - 시퀀스를 지원하는 데이터베이스 (오라클, PostgreSQL, DB2, H2)에서 사용
+
+  - 아래와 같이 시퀀스를 생성해야한다.
+```sql
+CREATE SEQUENCE BOARD_SEQ START WITH 1 INCREMENT BY 1;
+```
+  - 다음과 같이 엔티티를 정의한다.
+```java
+@Entity
+@SequenceGenerator( // BOARD_SEQ_GENERATOR라는 시퀀스 생성기를 등록
+  name = "BOARD_SEQ_GENERATOR",
+  sequenceName = "BOARD_SEQ", // 매핑할 데이터베이스 시퀀스 이름
+  initialValue = 1,
+  allocationSize = 1) // 시퀀스 한 번 호출에 증가하는 수(성능 최적화에 사용)
+public class Member {
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BOARD_SEQ_GENERATOR")
+  private Long id;
+  ...
+}
+```
+
 
 
 JPA는 데이터베이스 스키마를 자동으로 생성하는 기능을 지원한다.
