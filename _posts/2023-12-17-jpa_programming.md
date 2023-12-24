@@ -16,17 +16,18 @@ tags: [Spring Boot, JPA]
 - 연관관계 매핑 : @ManyToOne, @JoinColumn
 
 ---
-#### 엔티티 정의 어노테이션
 
+#### 엔티티 정의 어노테이션
 
 **@Entity**
 
 - JPA는 Entity객체를 만들때 기본생성자도 자동으로 만든다.
+
   - (기본생성자가 아닌) 생성자를 만들 경우 위 기능은 동작하지 않으므로 기본생성자를 따로 만들어야 한다.
 
 - final, enum, interface, inner클래스에는 사용할 수 없다.
 - 저장할 필드에 final을 사용하면 안된다.
-  - 필드에 final을 사용하는 것의 의미? 
+  - 필드에 final을 사용하는 것의 의미?
     - 상수 값이 되거나 한번만 쓸 수 있는 필드가 됨
     - 이러한 final이 붙은 멤버 변수들은 생성자 메서드가 끝나기 전에 초기화를 마쳐야함
 
@@ -51,8 +52,9 @@ public class Member {
 ```
 
 2. 자동생성: 대리 키 사용 방식
-  - IDENTITY 전략
-    - 기본 키 생성을 데이터베이스에 위임하는 전략(MySQL, PostgreSQL, SQL Server, DB2)
+
+- IDENTITY 전략
+  - 기본 키 생성을 데이터베이스에 위임하는 전략(MySQL, PostgreSQL, SQL Server, DB2)
 
 ```java
 @Entity
@@ -63,15 +65,20 @@ public class Member {
   ...
 }
 ```
-  - SEQUENCE 전략
-    - SEQUENCE는 유일한 값을 순서대로 생성하는 특별한 데이터베이스 오브젝트 
-    - 시퀀스를 지원하는 데이터베이스 (오라클, PostgreSQL, DB2, H2)에서 사용
 
-  - 아래와 같이 시퀀스를 생성해야한다.
+- SEQUENCE 전략
+
+  - SEQUENCE는 유일한 값을 순서대로 생성하는 특별한 데이터베이스 오브젝트
+  - 시퀀스를 지원하는 데이터베이스 (오라클, PostgreSQL, DB2, H2)에서 사용
+
+- 아래와 같이 시퀀스를 생성해야한다.
+
 ```sql
 CREATE SEQUENCE BOARD_SEQ START WITH 1 INCREMENT BY 1;
 ```
-  - 다음과 같이 엔티티를 정의한다.
+
+- 다음과 같이 엔티티를 정의한다.
+
 ```java
 @Entity
 @SequenceGenerator( // BOARD_SEQ_GENERATOR라는 시퀀스 생성기를 등록
@@ -86,8 +93,6 @@ public class Member {
   ...
 }
 ```
-
-
 
 JPA는 데이터베이스 스키마를 자동으로 생성하는 기능을 지원한다.
 
