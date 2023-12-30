@@ -22,7 +22,6 @@ tags: [Spring Boot, JPA]
 **@Entity**
 
 - JPA는 Entity객체를 만들때 기본생성자도 자동으로 만든다.
-
   - (기본생성자가 아닌) 생성자를 만들 경우 위 기능은 동작하지 않으므로 기본생성자를 따로 만들어야 한다.
 
 - final, enum, interface, inner클래스에는 사용할 수 없다.
