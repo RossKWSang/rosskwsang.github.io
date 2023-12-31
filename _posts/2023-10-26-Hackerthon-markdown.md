@@ -1,9 +1,9 @@
 ---
 layout: post
-title: kernel360 해커톤에 대한 회고
+title: Kernel360 해커톤에 대한 회고
 subtitle: 스프링부트를 사용하여 백엔드를 직접해보다.
-categories: kernel360
-tags: [백엔드, 해커톤, kernel360, 패스트캠퍼스]
+categories: Kernel360
+tags: [백엔드, 해커톤, Kernel360, 패스트캠퍼스]
 ---
 
 

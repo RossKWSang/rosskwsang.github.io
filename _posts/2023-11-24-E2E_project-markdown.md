@@ -1,9 +1,9 @@
 ---
 layout: post
-title: kernel360 E2E Project에 대한 회고
+title: Kernel360 E2E Project에 대한 회고
 subtitle: 끝과 끝을 자르면 또 다른 끝과 끝
-categories: kernel360
-tags: [백엔드, 프론트엔드, E2E, kernel360, 패스트캠퍼스]
+categories: Kernel360
+tags: [백엔드, 프론트엔드, E2E, Kernel360, 패스트캠퍼스]
 ---
 
 #### 요약 - kernel360 프로젝트 중 하나인 E2E Project를 마치고 그에 대한 회고와 공부한 기술스택, 기여도에 대한 글
