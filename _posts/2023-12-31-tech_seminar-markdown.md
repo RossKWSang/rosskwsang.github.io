@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Kernel360 오픈세미나 준비 과정
+title: Kernel360 오픈세미나 발표 준비 과정과 후기
 subtitle: 학습은 인풋과 아웃풋의 무한루프
 categories: Kernel360
 tags: [부트캠프, 국비지원, 커널360, Kernel360, 백엔드]
