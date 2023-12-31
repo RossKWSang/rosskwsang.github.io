@@ -118,23 +118,17 @@ Kernel360의 선택 과정으로 오픈세미나를 신청하여 준비 중이�
 영속성 부여에 대한 여러 메서드를 사용하고 각각을 데이터를 이용하여 분석한 에세이는 다음과 같음. [에세이 링크](https://itnext.io/advantages-of-not-using-spring-data-and-hibernate-with-relational-data-8a509faf0c48)
 
 - Spring Data JPA는 Spring Data 모듈 중에서도 가장 많이 사용되는 추가적인 레이어로서 EntityManager를 사용하지 않는 JPA라고 볼 수 있음.
-
 - Spring Data JPA를 사용한다면 주로 Hibernate를 구현체로 사용하게 되는데 이 에세이에서는 EclipseLink도 사용해 보았음.
-
 - MySQL과 연동된 데이터를 불러오는데 다음과 같은 내용의 비교를 진행함
-
   - 실행되는 SQL 쿼리의 수
-
     - show_sql(hibernate), logging.level(eclipselink)에서 select되는 개수, 다음과 같은 Line으로 시작해야함
       - Hibernate: select
       - [EL Fine]: sql: SELECT
   
   - 데이터를 불러오는데 필요한 시간
-
     - 15번 시간을 측정하고 마지막 10번의 시간을 기록함
 
   - 데이터가 정확하게 엔티티에 매핑이 되어있는지 여부
-
   - 데이터가 정확하게 정렬이 되는지 여부 (findAll(sort))
 
 - 비교가 진행된 여러가지 데이터 호줄 방법들
@@ -213,4 +207,4 @@ order by a.last_name,a.first_name, f.title, c.name
 
 ...
 
-<학문의 즐거움> 히로나카 헤이스케
+**학문의 즐거움** by 히로나카 헤이스케
