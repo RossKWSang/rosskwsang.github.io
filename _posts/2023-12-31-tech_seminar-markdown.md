@@ -121,10 +121,8 @@ JPA와 같은 JAVA진영의 ORM에 대한 나의 이야기를 하기위해 레�
 - Spring Data JPA를 사용한다면 주로 Hibernate를 구현체로 사용하게 되는데 이 에세이에서는 EclipseLink도 사용해 보았음.
 - MySQL과 연동된 데이터를 불러오는데 다음과 같은 내용의 비교를 진행함.
   - 실행되는 SQL 쿼리의 수
-    - show_sql(hibernate), logging.level(eclipselink)에서 select되는 개수, 다음과 같은 Line으로 시작해야함
-      - Hibernate: select
-      - [EL Fine]: sql: SELECT
-  
+    - 로그를 직접 카운트함.
+
   - 데이터를 불러오는데 필요한 시간
     - 15번 시간을 측정하고 마지막 10번의 시간을 기록함.
 
