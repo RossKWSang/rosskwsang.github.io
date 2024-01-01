@@ -114,34 +114,22 @@ Kernel360의 선택 과정으로 오픈세미나를 신청하여 준비 중이�
 
 ## Spring Data JPA에 대하여 비판적인 에세이 분석
 
-
-영속성 부여에 대한 여러 메서드를 사용하고 각각을 데이터를 이용하여 분석한 에세이는 다음과 같음. [에세이 링크](https://itnext.io/advantages-of-not-using-spring-data-and-hibernate-with-relational-data-8a509faf0c48)
+JPA와 같은 JAVA진영의 ORM에 대한 나의 이야기를 하기위해 레퍼런스를 삼을만한 에세이를 읽어보았다.
+영속성 부여에 대한 여러 메서드를 사용하고 각각을 데이터를 이용하여 분석하였으며, 링크는 다음과 같다. [에세이 링크](https://itnext.io/advantages-of-not-using-spring-data-and-hibernate-with-relational-data-8a509faf0c48)
 
 - Spring Data JPA는 Spring Data 모듈 중에서도 가장 많이 사용되는 추가적인 레이어로서 EntityManager를 사용하지 않는 JPA라고 볼 수 있음.
 - Spring Data JPA를 사용한다면 주로 Hibernate를 구현체로 사용하게 되는데 이 에세이에서는 EclipseLink도 사용해 보았음.
-- MySQL과 연동된 데이터를 불러오는데 다음과 같은 내용의 비교를 진행함
+- MySQL과 연동된 데이터를 불러오는데 다음과 같은 내용의 비교를 진행함.
   - 실행되는 SQL 쿼리의 수
     - show_sql(hibernate), logging.level(eclipselink)에서 select되는 개수, 다음과 같은 Line으로 시작해야함
       - Hibernate: select
       - [EL Fine]: sql: SELECT
   
   - 데이터를 불러오는데 필요한 시간
-    - 15번 시간을 측정하고 마지막 10번의 시간을 기록함
+    - 15번 시간을 측정하고 마지막 10번의 시간을 기록함.
 
   - 데이터가 정확하게 엔티티에 매핑이 되어있는지 여부
   - 데이터가 정확하게 정렬이 되는지 여부 (findAll(sort))
-
-- 비교가 진행된 여러가지 데이터 호줄 방법들
-  - JDBC & SQL
-
-```sql
-select a.actor_id, a.first_name,a.last_name, f.film_id, f.title,c.category_id, c.name from actor a
-left join film_actor using(actor_id)
-left join film f using(film_id)
-left join film_category using(film_id)
-left join category c using(category_id)
-order by a.last_name,a.first_name, f.title, c.name
-```
 
 - 블로그 결론
 
@@ -204,7 +192,5 @@ order by a.last_name,a.first_name, f.title, c.name
 섬세함과 파고드는 능력은 배움의 길에 반드시 필요하고, 열심히 배운다는 것은 그런 힘을 키우는 가장 좋은 방법이라 생각이들었다. 마지막으로 발표에서도 인용한 구절을 적으며 오픈세미나를 마무리하겠다.
 
 > “나는 그것을 ‘지혜의 넓이’라고 생각한다. <br><br> 더 나아가 지혜에는 대상을 깊이 살펴보는 ‘깊이’라는 측면이 있다.<br><br> 그리고 결단력을 유도하는 ‘힘’이라는 측면도 있다.<br><br> 그러므로 나는 ‘왜 배워야 하는가?’라는 질문에 대하여, 이러한 ‘지혜’를 얻기 위해서라고 대답하고 싶다.”
-
-...
 
 **학문의 즐거움** by 히로나카 헤이스케
