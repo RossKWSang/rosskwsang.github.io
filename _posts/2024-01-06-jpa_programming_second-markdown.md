@@ -173,17 +173,77 @@ public void testSave() {
 - 일대일 관계는 그 반대도 일대일 관계
 - 다대일 관계에서는 외래키를 꼭 다(N) 쪽에서 가지지만 일대일 관계에서는 어디서든 가질 수 있음
 - MEMBER가 주 테이블, LOCKER가 대상 테이블
+- 외래키는 LOCKER 테이블에 있음
 
 ##### 일대일 단방향
 
-##### 일대일 양방향
-
-
 ```java
-@ManyToOne
-@JoinColumn(name="TEAM_ID")
-private Team team;
+@Entity
+public class Member {
+  
+  @Id @GeneratedValue
+  @Column(name = "MEMBER_ID")
+  private Long id;
+  
+  private String username;
+
+  @OneToOne
+  @JoinColumn(name = "LOCKER_ID")
+  private Locker locker;
+  ...
+}
+
+@Entity
+public class Locker {
+
+  @Id @GeneratedValue
+  @Column(name = "LOCKER_ID")
+  private Long Id;
+
+  private String name;
+}
 ```
 
-@ManyToOne : 다중성을 나타내는 어노테이션, 이 경우는 다대일 관계를 나타냄
-@JoinColumn : 외래키를 매핑할 때 사용하는 어노테이션
+- 대상 테이븡레 외래 키가 있는 "단방향 관계"는 JPA에서 지원하지 않음
+- 한마디로 못쓴다
+
+
+##### 일대일 양방향
+
+```java
+@Entity
+public class Member {
+  
+  @Id @GeneratedValue
+  @Column(name = "MEMBER_ID")
+  private Long id;
+  
+  private String username;
+
+  @OneToOne
+  @JoinColumn(name = "LOCKER_ID")
+  private Locker locker;
+  ...
+}
+
+@Entity
+public class Locker {
+
+  @Id @GeneratedValue
+  @Column(name = "LOCKER_ID")
+  private Long Id;
+
+  private String name;
+
+  @OneToOne(mappedBy = "locker")
+  private Member member;
+}
+```
+
+- Member.locker가 연관관계 주인 (@JoinColumn을 사용)
+- Locker.member는 연관관계 주인이 아니라고 mappedBy를 선언함
+
+#### 다대다
+
+- 보통 연결 엔티티를 사용하여 정의
+- 다대일 관계가 두개 있는 것으로 생각할 수 있으나 편리하게 매핑할 수 있는 @ManyToMany어노테이션을 사용할 수 있음
