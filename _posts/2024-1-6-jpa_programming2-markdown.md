@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 자바 ORM 표준 JPA 프로그래밍 정리하며 읽기 - 06
+title: 자바 ORM 표준 JPA 프로그래밍 정리하며 읽기 - 02
 subtitle: 연관관계 부분 6장
 categories: JPA
 tags: [Spring Boot, JPA]
