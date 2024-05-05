@@ -2,8 +2,10 @@
 layout: post
 title: 나의 캐글 도전기 01
 subtitle: 
-categories: 독서평
-tags: [독서평]
+categories: 데이터사이언스
+tags: [데이터사이언스, Python]
 ---
 
-ㅇㅇㅇ
+ㅇㅇㅇㅇ
+
+어떤걸 써야할까?
