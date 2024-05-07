@@ -1,11 +1,12 @@
 ---
 layout: post
-title: 나의 캐글 도전기 01
+title: 멀티모달 모델 구축기 
 subtitle: 
 categories: 데이터사이언스
 tags: [데이터사이언스, Python]
 ---
 
-ㅇㅇㅇㅇ
+멀티모달이란 ... 이러쿵 저러쿵
 
-어떤걸 써야할까?
+원래 있는 모델에 intermediate 합병을 사용하면 그 모델의 구조 자체를 사용할 수 없게되는 것이다.
+
